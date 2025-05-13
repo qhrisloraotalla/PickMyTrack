@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickMyTrack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-border">
+        <div class="header-container">
+            <div class="left-section">
+                <div class="logo">
+                    <a href="homepage.html"><img src="PMTLOGO.png" alt="PickMyTrack Logo"></a>
+                </div>
+                <div class="title">Pick My Track</div>
+
+            </div>
+
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-header" id="dropdownHeader">
+                 <div class="user-icon">
+                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                 </svg>
+                 </div>
+                 <span class="username" id="usernameDisplay"></span>
+                 <svg class="chevron" id="chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="currentColor"/>
+                  </svg>
+                 </div>
+                   <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-item" onclick="handleLogout()">LOG OUT</div>
+                     </div>
+                  </div>
+        </div>
+    </div>
+    <div class="bot-border">
+        <div class="bot-container">
+            <div class="subtitle">Track Matching Test</div>
+            <div class="subinfo">Navigate your future in tech.</div>
+        </div>
+    </div>
+
+    <div class="box-container">
+        <a href="NT.html" class="box">
+            <img src="nt-img.png">
+            Networking Technology
+            <div class="track-description">Focuses on designing, implementing, and managing computer networks, including hardware, software, and security systems.</div>
+        </a>
+        <a href="BA.html" class="box">
+            <img src="ba-img.png">
+            Business Analytics
+            <div class="track-description">Concentrates on using data analysis and statistical techniques to help organizations make data-driven business decisions.</div>
+        </a>
+        <a href="SM.html" class="box">
+            <img src="sm-img.png">
+            Service Management
+            <div class="track-description">Emphasizes the planning, delivery, and management of IT services to ensure efficient and effective support for businesses and their customers.</div>
+        </a>
+    </div>
+    
+    <form method="POST" action="result.php" id="quizForm">
+        <div class="survey-section">
+
+            <!-- Added question containers for Business Analytics and Networking Technology -->
+            <div id="all-question-container"></div>
+
+            <script>
+                const baQuestions = [
+                    "I enjoy working with numbers and data to uncover patterns.",
+                    "I like using tools like spreadsheets and databases to analyze information.",
+                    "I am interested in learning new software tools for data analysis and visualization.",
+                    "I enjoy solving real-world problems using data and logical thinking.",
+                    "I like turning raw data into meaningful insights.",
+                    "I prefer making decisions based on data rather than intuition.",
+                    "I enjoy interpreting trends and predicting future outcomes based on data.",
+                    "I find satisfaction in helping organizations improve by analyzing data.",
+                    "I am comfortable working with charts, graphs, and reports to extract insights.",
+                    "I want to understand how organizations use data to make strategic decisions.",
+                    "I am interested in learning new techniques for presenting and interpreting data.",
+                    "I enjoy working with structured data, reports, and performance metrics.",
+                    "I like identifying key factors that measure success in various areas.",
+                    "I find statistical concepts and forecasting useful and interesting.",
+                    "I am comfortable with logical thinking and structured problem-solving.",
+                    "I see myself working in roles where data analysis or problem-solving is key.",
+                    "I am interested in a variety of fields where data-driven insights are valuable.",
+                    "I want a career where I can help organizations make smarter decisions through data.",
+                    "I believe that data analysis plays an important role in improving efficiency and profitability.",
+                    "I prefer working in environments that focus on strategic planning and data-driven decision-making.",
+                    "I enjoy learning through real-world scenarios and case studies.",
+                    "I am eager to gain expertise in tools that help with data analysis and visualization.",
+                    "I believe mentorship from experienced professionals can help me grow in my career.",
+                    "I value hands-on projects, internships, and learning from real-world experience.",
+                    "I would recommend exploring roles where data analysis and problem-solving are key skills."
+                ];
+              
+                const ntQuestions = [
+                    "I enjoy solving complex technical problems in a systematic way.",
+                    "I am curious about how information moves between digital systems.",
+                    "I like configuring hardware and exploring how different components connect.",
+                    "I find it fascinating how devices communicate and share data.",
+                    "I enjoy working with structured systems that require precision and logic.",
+                    "I am interested in protecting digital environments from potential threats.",
+                    "I prefer hands-on work that involves setting up and managing technical systems.",
+                    "I am comfortable using text-based tools to interact with technology.",
+                    "I like learning about the rules and systems that govern digital communication.",
+                    "I enjoy building and maintaining reliable systems for others to use.",
+                    "I want to understand how large-scale systems like the cloud operate behind the scenes.",
+                    "I’m interested in learning how digital security tools work and why they matter.",
+                    "I enjoy exploring wireless and mobile technologies.",
+                    "I like identifying and fixing issues that affect system performance.",
+                    "I can see myself working in a role that supports technology users and systems.",
+                    "I prefer logical thinking and following structured approaches to technical challenges.",
+                    "I am motivated to earn certifications that prove my technical skills.",
+                    "I enjoy working with enterprise-level technology and digital infrastructure.",
+                    "I believe technical systems are essential for running modern organizations.",
+                    "I want to explore the future of technology in connected environments.",
+                    "I enjoy working under conditions that require high reliability and security.",
+                    "I like experimenting with tools that analyze and simulate digital systems.",
+                    "I value hands-on learning experiences with real-world tools and equipment.",
+                    "I believe tech professionals help drive innovation and digital change.",
+                    "I would recommend a tech path that focuses on system reliability, connectivity, and protection."
+                ];
+
+                const smQuestions = [
+                    "I am confident in applying service management frameworks to complex business problems.",
+                    "I understand the strategic role of service management in achieving business goals.",
+                    "I am able to evaluate service quality using models like SERVQUAL or RATER.",
+                    "I can effectively use service blueprints to improve customer experiences.",
+                    "I am confident in managing service capacity and demand forecasting.",
+                    "I can identify service process inefficiencies and propose practical improvements.",
+                    "I am confident in interpreting performance indicators (KPIs) in service environments.",
+                    "I can make data-driven decisions to enhance service delivery.",
+                    "I can analyze customer satisfaction metrics and draw actionable insights.",
+                    "I am comfortable evaluating customer journey touchpoints across multiple channels.",
+                    "I understand how technology (CRM, automation, etc.) supports service management.",
+                    "I am confident in using digital tools to map, analyze, and improve service processes.",
+                    "I am aware of how AI and analytics are shaping the future of service industries.",
+                    "I can propose digital solutions to modern service delivery challenges.",
+                    "I am interested in learning tools or platforms used in service operations (e.g., ERP, CRM systems).",
+                    "I see myself pursuing a career in service-oriented industries such as hospitality, healthcare, retail, or logistics.",
+                    "I understand the role of service managers in creating value for both the business and the customer.",
+                    "I believe the skills gained from the Service Management Track are relevant to today’s job market.",
+                    "I feel prepared to take on roles involving customer experience, operations, or service strategy.",
+                    "I am confident in my ability to contribute to service improvement in a real-world business environment.",
+                    "I have gained practical insights through case studies, simulations, or projects in this track.",
+                    "I value industry exposure, guest lectures, or internship opportunities related to service management.",
+                    "I am interested in pursuing further studies or certifications in service operations or customer experience.",
+                    "I feel that the Service Management Track has shaped my professional identity and goals.",
+                    "I would recommend the Service Management Track to other students interested in service leadership and innovation."
+                ];
+              
+                function createLikertQuestion(id, questionText, prefix) {
+                    let html = `
+                        <div class="question" id="${prefix}question${id}">
+                            <h2 class="question-title">Question ${id}: ${questionText}</h2>
+                            <div class="likert-scale">
+                                <span class="scale-label agree">Agree</span>
+                                <div class="options">`;
+              
+                    for (let i = 1; i <= 5; i++) {
+                        html += `
+                            <label class="label">
+                                <input type="radio" name="${prefix}${id}" value="${i}">
+                                <div class="option option-${i}">
+                                    <div class="inner-circle"></div>
+                                </div>
+                            </label>`;
+                    }
+              
+                    html += `
+                            </div>
+                            <span class="scale-label disagree">Disagree</span>
+                        </div>
+                    </div>`;
+                    return html;
+                }
+              
+                const allContainer = document.getElementById('all-question-container');
+              
+                let allQuestions = [];
+
+                baQuestions.forEach((q, i) => {
+                allQuestions.push({ number: i + 1, text: q, track: 'ba' });
+                });
+
+                ntQuestions.forEach((q, i) => {
+                allQuestions.push({ number: i + 1, text: q, track: 'nt' });
+                });
+
+                smQuestions.forEach((q, i) => {
+                allQuestions.push({ number: i + 1, text: q, track: 'sm' });
+                });
+
+                // Shuffle the combined questions
+                allQuestions.sort(() => Math.random() - 0.5);
+
+                // Render in one container, in order
+                allQuestions.forEach((q, index) => {
+                allContainer.innerHTML += createLikertQuestion(index + 1, q.text, q.track);
+                });
+
+            </script>
+
+            <button class="submit-button" id="submitBtn" type="submit">See Results</button>
+        </div>
+    </form>
+
+    <!-- JavaScript at the end of the body -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const radios = document.querySelectorAll('input[type="radio"]');
+            
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    selectOption(this.closest('.question').id, this.value, this.closest('label').querySelector('.option'));
+                });
+            });
+    
+            function selectOption(questionId, value, element) {
+                // Remove selected class from all options in this question
+                const options = document.querySelectorAll(`#${questionId} .option`);
+                options.forEach(option => {
+                    option.classList.remove('selected');
+                });
+    
+                // Add selected class to the clicked option
+                element.classList.add('selected');
+            }
+        });
+    
+
+    // JavaScript for form submission and validation
+        document.addEventListener('DOMContentLoaded', function () {
+            const radios = document.querySelectorAll('input[type="radio"]');
+            
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    selectOption(this.closest('.question').id, this.value, this.closest('label').querySelector('.option'));
+                });
+            });
+
+            function selectOption(questionId, value, element) {
+                // Remove selected class from all options in this question
+                const options = document.querySelectorAll(`#${questionId} .option`);
+                options.forEach(option => {
+                    option.classList.remove('selected');
+                });
+
+                // Add selected class to the clicked option
+                element.classList.add('selected');
+            }
+
+            // Handle form submission
+            const form = document.getElementById('quizForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();  // Prevent form from submitting until validation is done
+
+                const unansweredQuestions = [];
+
+                // Check if each question has an answer
+                const allQuestions = document.querySelectorAll('.question');
+                allQuestions.forEach(question => {
+                    const questionId = question.id;
+                    const radioChecked = question.querySelector('input[type="radio"]:checked');
+                    if (!radioChecked) {
+                        unansweredQuestions.push(questionId);
+                    }
+                });
+
+                if (unansweredQuestions.length > 0) {
+                    // If there are unanswered questions, show alert and scroll to the first unanswered question
+                    alert('Please answer all questions before submitting.');
+                    document.getElementById(unansweredQuestions[0]).scrollIntoView({ behavior: 'smooth' });
+                    return;  // Stop form submission
+                }
+
+                // If all questions are answered, proceed with form submission
+                form.submit();
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const dropdownHeader = document.getElementById('dropdownHeader');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const chevron = document.getElementById('chevron');
+        const logoutButton = document.querySelector('.dropdown-item');
+            
+
+
+
+        // Toggle dropdown
+        dropdownHeader.addEventListener('click', function () {
+            dropdownMenu.classList.toggle('active');
+            dropdownHeader.classList.toggle('active');
+            chevron.classList.toggle('up');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const userDropdown = document.getElementById('userDropdown');
+            if (!userDropdown.contains(event.target)) {
+                dropdownMenu.classList.remove('active');
+                dropdownHeader.classList.remove('active');
+                chevron.classList.remove('up');
+            }
+        });
+
+        // Handle logout
+        logoutButton.addEventListener('click', function () {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("username");
+            localStorage.removeItem("email");
+            window.location.href = "index.html";
+        });
+    });
+
+    </script>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const userIcon = document.querySelector('.user-icon');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      const logoutButton = document.querySelector('.dropdown-item');
+
+      // Toggle dropdown visibility when the user icon is clicked
+      userIcon.addEventListener('click', function (event) {
+          event.stopPropagation(); // Prevent click propagation
+          dropdownMenu.classList.toggle('show');
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener('click', function (event) {
+          if (!userIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+              dropdownMenu.classList.remove('show');
+          }
+      });
+
+      // Handle logout
+      logoutButton.addEventListener('click', function () {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("username");
+          localStorage.removeItem("email");
+          window.location.href = "index.html"; // Redirect to login page
+      });
+  });
+</script>
+    
+</body>
+</html>

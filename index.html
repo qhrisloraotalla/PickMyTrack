@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PickMyTrack | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffc3a0, #ffafbd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: blur(10px);
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.2;
+      backdrop-filter: blur(15px);
+    }
+
+    .shape1 {
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.2);
+      top: -100px;
+      left: -100px;
+    }
+
+    .shape2 {
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 106, 149, 0.3);
+      bottom: -150px;
+      right: -150px;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      padding: 40px 35px;
+      width: 100%;
+      max-width: 400px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      color: #fff;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-card h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      outline: none;
+      font-size: 15px;
+      transition: 0.3s ease;
+      color: #333;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .input-group input:focus {
+      border-color: #ff6a95;
+      box-shadow: 0 0 5px rgba(255, 106, 149, 0.5);
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      background: transparent;
+      padding: 0 4px;
+      color: #555;
+      pointer-events: none;
+      transition: 0.2s ease-in-out;
+      font-size: 14px;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 10px;
+      background: #fff;
+      color: #ff6a95;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .show-pass {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #444;
+      font-size: 18px;
+      transition: 0.3s;
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
+    }
+
+    .login-btn {
+      background: linear-gradient(to right, #ff6a95, #ff9472);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .login-btn:active {
+      background: linear-gradient(to right, #ff9472, #ff6a95);
+      box-shadow: 0 5px 20px rgba(255, 106, 149, 0.4);
+    }
+
+    .forgot-password {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .forgot-password a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .forgot-password a:hover {
+      color: #ffedf3;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+
+  <div class="login-card">
+    <h2>PickMyTrack Login</h2>
+    <form action="login.php" method="POST" onsubmit="return validateLogin()">
+      <div class="input-group">
+        <input type="text" name="email" id="email" placeholder=" " required>
+        <label for="email">Email</label>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password" placeholder=" " required>
+        <label for="password">Password</label>
+        <i class="fa-solid fa-eye show-pass" onclick="togglePassword()" id="toggleIcon"></i>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
+      <div class="forgot-password">
+        <a href="forgot_password.html">Forgot Password?</a>
+        <br>
+        <!--<a href="forgot_email.html">Forgot Email?</a>-->
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const toggleIcon = document.getElementById("toggleIcon");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+      }
+    }
+
+    function validateLogin() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      if (!email || !password) {
+        alert("Please fill in both fields.");
+        return false;
+      }
+
+      const btn = document.querySelector(".login-btn");
+      btn.innerText = "Logging in...";
+      btn.disabled = true;
+      return true;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-border">
+        <div class="header-container">
+            <div class="left-section">
+                <div class="logo">
+                    <a href="nhomepage.html"><img src="PMTLOGO.png" alt="PickMyTrack Logo"></a>
+                </div>
+                <div class="title">Pick My Track</div>
+
+            </div>
+
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-header" id="dropdownHeader">
+                 <div class="user-icon">
+                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                 </svg>
+                 </div>
+                 <span class="username" id="usernameDisplay"></span>
+                 <svg class="chevron" id="chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="currentColor"/>
+                  </svg>
+                 </div>
+                   <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-item" onclick="handleLogout()">LOG OUT</div>
+                     </div>
+                  </div>
+        </div>
+    </div>
+    <div class="container">
+        <header class="headerBA">
+            <h1>Business Analytics</h1>
+        </header>
+        <div class="image-container">
+            <img src="SM.png" alt="Service Management Illustration">
+        </div>
+        <section class="description">
+            <p>The Business Analytics track involves using data to analyze trends, make informed decisions, and support
+                business strategy. Students learn techniques in data mining, statistical analysis, predictive modeling, and data
+                visualization, helping organizations transform raw data into actionable insights. This track focuses on business
+                intelligence tools and software to analyze and interpret data, as well as communicate findings to support
+                decision-making. Graduates are prepared for roles such as data analysts, business intelligence specialists, or data
+                scientists, helping organizations leverage their data to drive growth and improve performance 
+            </p>
+        </section>
+        <section class="career-path">
+            <h2>Career Path</h2>
+            <ul>
+                <li>Data Analyst</li>
+                <li>Business Intelligence Analyst</li>
+                <li>Market Research Analyst</li>
+                <li>Financial Analyst</li>
+                <li>Operations Analyst</li>
+                <li>Risk Analyst</li>
+                <li>CRM Analyst</li>
+                <li>Digital Marketing Analyst</li>
+                <li>Product Analyst</li>
+                <li>Supply Chain Analyst</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const userIcon = document.querySelector('.user-icon');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      const logoutButton = document.querySelector('.dropdown-item');
+
+      // Toggle dropdown visibility when the user icon is clicked
+      userIcon.addEventListener('click', function (event) {
+          event.stopPropagation(); // Prevent click propagation
+          dropdownMenu.classList.toggle('show');
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener('click', function (event) {
+          if (!userIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+              dropdownMenu.classList.remove('show');
+          }
+      });
+
+      // Handle logout
+      logoutButton.addEventListener('click', function () {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("username");
+          localStorage.removeItem("email");
+          window.location.href = "index.html"; // Redirect to login page
+      });
+  });
+</script>
+</body>
+
+
+</html>

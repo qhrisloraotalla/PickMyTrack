@@ -1,0 +1,491 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.top-border {
+    background-color: #edf2f9;
+    padding: 5px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 15px;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+}
+
+.bot-border {
+    height: 350px;
+    background-color: #ff8686;
+}
+
+.bot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    height: 100%;
+}
+
+.subtitle {
+    margin-top: 70px;
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    font-family: Arial, sans-serif;
+}
+
+.subinfo {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-family: Arial, sans-serif;
+}
+
+.box-container {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 50px;
+}
+
+.box {
+    display: block;
+    width: 350px;
+    height: 200px;
+    background-color: #edf2f9a8;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.box:hover {
+    background-color: #edf2f919;
+}
+
+.track-description {
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+/* Survey Form Styles */
+.survey-section {
+    max-width: 800px;
+    margin: 250px auto 40px auto; 
+    background-color: #edf2f9a8; 
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    margin-bottom: 40px;
+}
+
+.question-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.likert-scale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scale-label {
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+}
+
+.agree {
+    color: #10b981; 
+}
+
+.disagree {
+    color: #000000;
+}
+
+/* Survey Form Styles */
+.options {
+    display: flex;
+    gap: 24px;
+    margin: 0 20px;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.option {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.option:hover {
+    transform: scale(1.05);
+}
+
+.option-1, .option-2 {
+    border-color: #10b981; 
+}
+
+.option-3 {
+    border-color: #d1d5db;
+}
+
+.option-4, .option-5 {
+    border-color: #4b5563; 
+}
+
+.option.selected .inner-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.option-1.selected .inner-circle, .option-2.selected .inner-circle {
+    background-color: #10b981; 
+}
+
+.option-3.selected .inner-circle {
+    background-color: #d1d5db;
+}
+
+.option-4.selected .inner-circle {
+    background-color: #6b7280; 
+}
+
+.option-5.selected .inner-circle {
+    background-color: #000000; 
+}
+
+
+.submit-button {
+    display: block;
+    margin: 30px auto 0;
+    background-color: #ff8686;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: Arial, sans-serif;
+}
+
+.submit-button:hover {
+    background-color: #ff6b6b;
+}
+
+.results {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    display: none;
+    background-color: white;
+}
+
+.results h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.results ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.results li {
+    margin-bottom: 8px;
+    font-family: Arial, sans-serif;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .box-container {
+        flex-direction: column;
+        top: 250px;
+        gap: 20px;
+    }
+    
+    .box {
+        width: 300px;
+        height: 180px;
+    }
+    
+    .survey-section {
+        margin-top: 700px; /* Adjusted to account for stacked boxes */
+    }
+}
+
+@media (max-width: 768px) {
+    .options {
+        gap: 12px;
+    }
+    
+    .option {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .option.selected .inner-circle {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .subtitle {
+        font-size: 36px;
+    }
+    
+    .box {
+        width: 250px;
+        height: 160px;
+        font-size: 20px;
+    }
+    
+    .likert-scale {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .options {
+        order: 2;
+    }
+    
+    .scale-label.agree {
+        order: 1;
+    }
+    
+    .scale-label.disagree {
+        order: 3;
+    }
+}
+
+/* SM.html */
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+header {
+    background-color: #FF5A5F;
+    padding: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.image-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-container img {
+    width: 300px;
+}
+
+.description {
+    font-size: 16px;
+    color: #333;
+    margin: 20px;
+    text-align: justify;
+}
+
+.career-path {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.career-path h2 {
+    font-size: 20px;
+    color: black;
+}
+
+.career-path ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.career-path li {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* BA.html */
+.headerBA {
+    background-color: #fbc02d;
+    padding: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* NT.html */
+.headerNT {
+    background-color: #3498db;
+    padding: 20px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-dropdown {
+    position: relative;
+    margin-right: 20px;
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: linear-gradient(to right, #663399, #9370DB);
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    color: #40E0D0;
+}
+
+.dropdown-header.active {
+    border-radius: 8px 8px 0 0;
+}
+
+.user-icon {
+    background-color: #40E0D0;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: #663399;
+}
+
+.username {
+    font-weight: 500;
+}
+
+.chevron {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.chevron.up {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 10;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    color: #663399;
+}
+
+/* Adjust header container to include dropdown */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.chevron.up {
+    transform: rotate(180deg);
+}
+
+#dropdownMenu {
+    display: none; /* Initially hide the dropdown */
+}
+
+#dropdownMenu.show {
+    display: block; /* Show the dropdown when the 'show' class is added */
+}

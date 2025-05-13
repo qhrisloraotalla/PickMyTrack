@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #3a0ca3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #3a0ca3;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #4361ee;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .card a:hover {
+            background: #3a0ca3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #3a0ca3;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* User dropdown styles */
+        .user-dropdown {
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        .dropdown-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: linear-gradient(to right, #663399, #9370DB);
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            color: #40E0D0;
+        }
+        
+        .dropdown-header.active {
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .user-icon {
+            background-color: #40E0D0;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #663399;
+        }
+        
+        .username {
+            font-weight: 500;
+        }
+        
+        .chevron {
+            margin-left: auto;
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .chevron.up {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 10;
+        }
+        
+        .dropdown-menu.active {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .dropdown-item:hover {
+            color: #663399;
+        }
+        
+        /* Adjust header container to include dropdown */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <!-- Management Tools -->
+        <div class="card">
+            <h2>Management Tools</h2>
+            <p>Manage users and view results.</p>
+            <a href="http://localhost/phpmyadmin">Go to Tools</a>
+        </div>
+
+        <!-- Logout -->
+        <div class="card">
+            <h2>Logout</h2>
+            <p>Securely log out of the admin dashboard.</p>
+            <a href="logout.php">Logout</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 PickMyTrack. All rights reserved.</p>
+    </footer>
+</body>
+</html>

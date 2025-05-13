@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-border">
+        <div class="header-container">
+            <div class="left-section">
+                <div class="logo">
+                    <a href="nhomepage.html"><img src="PMTLOGO.png" alt="PickMyTrack Logo"></a>
+                </div>
+                <div class="title">Pick My Track</div>
+
+            </div>
+
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-header" id="dropdownHeader">
+                 <div class="user-icon">
+                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                 </svg>
+                 </div>
+                 <span class="username" id="usernameDisplay"></span>
+                 <svg class="chevron" id="chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="currentColor"/>
+                  </svg>
+                 </div>
+                   <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-item" onclick="handleLogout()">LOG OUT</div>
+                     </div>
+                  </div>
+        </div>
+    </div>
+    <div class="container">
+        <header>
+            <h1>Service Management</h1>
+        </header>
+        <div class="image-container">
+            <img src="SM.png" alt="Service Management Illustration">
+        </div>
+        <section class="description">
+            <p>The Service Management track is centered around managing and delivering IT services that meet business needs and ensure optimal customer satisfaction. Students learn about IT service management frameworks such as ITIL (Information Technology Infrastructure Library), along with topics in service delivery, support, and operational processes. The track emphasizes skills in project management, service quality assurance, and customer relationship management. Graduates are trained to handle roles such as IT service managers, support specialists, and IT consultants, focusing on optimizing service delivery and managing the full lifecycle of IT services within organizations.</p>
+        </section>
+        <section class="career-path">
+            <h2>Career Path</h2>
+            <ul>
+                <li>IT Service Manager</li>
+                <li>Help Desk Technician</li>
+                <li>Customer Support Specialist</li>
+                <li>ITIL Consultant</li>
+                <li>Service Desk Analyst</li>
+                <li>Technical Support Engineer</li>
+                <li>Vendor Relationship Manager</li>
+                <li>Change Management Specialist</li>
+                <li>IT Operations Manager</li>
+                <li>Incident Manager</li>
+            </ul>
+        </section>
+    </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const userIcon = document.querySelector('.user-icon');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      const logoutButton = document.querySelector('.dropdown-item');
+
+      // Toggle dropdown visibility when the user icon is clicked
+      userIcon.addEventListener('click', function (event) {
+          event.stopPropagation(); // Prevent click propagation
+          dropdownMenu.classList.toggle('show');
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener('click', function (event) {
+          if (!userIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+              dropdownMenu.classList.remove('show');
+          }
+      });
+
+      // Handle logout
+      logoutButton.addEventListener('click', function () {
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("username");
+          localStorage.removeItem("email");
+          window.location.href = "index.html"; // Redirect to login page
+      });
+  });
+</script>
+</body>
+</html>
